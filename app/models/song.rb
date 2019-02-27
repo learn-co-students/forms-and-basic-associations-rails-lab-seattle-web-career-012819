@@ -10,11 +10,11 @@ class Song < ActiveRecord::Base
   end
 
   def genre_name
-    self.try(:genre).try(:name)
+    self.genre ? self.genre.name : nil
   end
 
   def artist_name
-    self.try(:artist).try(:name)
+    self.artist ? self.artist.name : nil
   end
 
   def artist_name=(name)
@@ -31,6 +31,6 @@ class Song < ActiveRecord::Base
   end
 
   def note_contents
-    self.notes.map(&:content)
+    self.notes.map {|note| note.content}
   end
 end
